@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+<title>Угадай число</title>
+</head>
+<body>
+
+    <h1>Угадай число от 1 до 10</h1>
+    
+    <input id="input" type="number" placeholder="Введи число">
+    <button onclick="check()">Проверить</button>
+       
+        <p id="result"></p>
+
+        
+        <script>
+            let secret = Math.floor(Math.random() * 10) + 1;
+            let attempts = 0;
+        
+            function check() {
+                let user = parseInt(document.getElementById("input").value);
+                attempts++;
+
+                if (isNaN(user)) {
+                    document.getElementById("result").innerText = "Введи число!";
+                    return;
+                }
+
+                if (user == secret) {
+                    document.getElementById("result").innerText = "Ты угадал! Попыток: " + attempts;
+                } else if (user > secret) {
+                    document.getElementById("result").innerText = "Попробуй меньше";
+                } else {
+                    document.getElementById("result").innerText = "Попробуй больше";
+                }
+            }
+        </script>
+        <button onclick="restart()">Новая игра</button>
+        
+        <script>
+            function restart() {
+                secret = Math.floor(Math.random() * 10) + 1;
+                attempts = 0;
+                document.getElementById("input").value = "";
+                document.getElementById("result").innerText = "";
+            }
+        </script>
+</body>
+</html>
+
+          
+    
